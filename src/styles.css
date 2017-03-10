@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    position: relative;
+    padding: 20px;
+    background: url('http://www.indexoutofbounds.net/content/images/2015/10/BS_Background-AngularJS.png');
+}
+
+.login-wrapper {
+    margin: 0 auto;    
+}

@@ -1,4 +1,8 @@
+import { UsersService } from './../../services/users.service';
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
 
 @Component({
   selector: 'app-users-search-form',
@@ -6,10 +10,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./users-search-form.component.css']
 })
 export class UsersSearchFormComponent implements OnInit {
+  private username = new FormControl();
 
-  constructor() { }
+  private searchObj = {
+    username: ''
+  };
+
+  constructor(private usersService: UsersService) { }
 
   ngOnInit() {
+    this.username.valueChanges
+    .debounceTime(1000)
+    .distinctUntilChanged()
+    .subscribe(
+      val => {
+        console.log(val)
+        this.usersService.getUsers(this.searchObj).subscribe(
+          (users) => console.log(users),
+          err => console.error(err)
+        )
+      }
+    );
+    // .switchMap(value => this.usersService.getUsers(this.searchObj).catch(err => Observable.of([])))
   }
 
 }
