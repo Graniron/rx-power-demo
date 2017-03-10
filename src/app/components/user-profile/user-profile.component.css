@@ -1,6 +1,8 @@
 .panel-info {
     box-shadow: 3px 3px 5px lightblue;
     font-size: 14px;
+    -webkit-user-select: none;    
+    user-select: none;
 }
 
 .panel-heading  {

@@ -1,3 +1,4 @@
+import { RotateDirective } from './directives/rotate.directive';
 import { DragableDirective } from './directives/dragable.directive';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -22,7 +23,8 @@ import { UsersService } from './services/users.service';
     UsersListComponent,
     UsersSearchFormComponent,
     UserProfileComponent,
-    DragableDirective
+    DragableDirective,
+    RotateDirective
   ],
   imports: [
     BrowserModule,
