@@ -30,7 +30,7 @@ export class UsersSearchFormComponent implements OnInit {
       val => {
         console.log(val)
         this.usersService.getUsers(this.searchObj).subscribe(
-          (users) => console.log(users),
+          (users) => this.usersService.shareUsers(users),
           err => console.error(err)
         )
       }

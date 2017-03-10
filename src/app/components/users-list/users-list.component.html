@@ -1,3 +1,26 @@
-<p>
-  user-list works!
-</p>
+<div class="list-wrapper panel" [ngClass]="{'panel-success': count, 'panel-warning': !count}">
+  <div class="panel-heading">Search results({{count || 0}})</div>
+  <div class="panel-body">
+    <div class="list-group">
+      
+      <a class="list-group-item" *ngFor="let user of users">
+        <p>
+          <span class="avatar-wrapper">
+            <img draggable="false" [src]="user.avatar_url" class="img-responsive img-rounded" width="35" height="35" alt="avatar">
+          </span>
+          <span class="login-wrapper">
+            <span>{{ user.login }}</span>
+          </span>
+           <a [routerLink]="['user', user.id]">
+              <i class="fa fa-link" aria-hidden="true"></i>
+            </a>
+        </p>
+        <a [href]="user.html_url" target="_blanc">Github page</a>
+      </a>
+
+    </div>
+    <div *ngIf="!count">No results found</div>
+  </div>
+</div>
+
+
