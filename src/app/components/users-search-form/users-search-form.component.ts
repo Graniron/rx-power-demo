@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/merge';
+
 
 @Component({
   selector: 'app-users-search-form',
@@ -11,15 +13,17 @@ import 'rxjs/add/operator/distinctUntilChanged';
 })
 export class UsersSearchFormComponent implements OnInit {
   private username = new FormControl();
+  private language = new FormControl();
 
   private searchObj = {
-    username: ''
+    username: '',
+    language: ''
   };
 
   constructor(private usersService: UsersService) { }
 
   ngOnInit() {
-    this.username.valueChanges
+    this.language.valueChanges.merge(this.username.valueChanges)
     .debounceTime(1000)
     .distinctUntilChanged()
     .subscribe(
