@@ -1,3 +1,4 @@
+import { DragableDirective } from './directives/dragable.directive';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -20,7 +21,8 @@ import { UsersService } from './services/users.service';
     SearchPageComponent,
     UsersListComponent,
     UsersSearchFormComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    DragableDirective
   ],
   imports: [
     BrowserModule,

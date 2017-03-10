@@ -3,7 +3,7 @@
   <div class="panel-body">
     <div class="list-group">
       
-      <a class="list-group-item" *ngFor="let user of users">
+      <a class="list-group-item" appDragable *ngFor="let user of users">
         <p>
           <span class="avatar-wrapper">
             <img draggable="false" [src]="user.avatar_url" class="img-responsive img-rounded" width="35" height="35" alt="avatar">
