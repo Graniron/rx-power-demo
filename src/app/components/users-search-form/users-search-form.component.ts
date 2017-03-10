@@ -1,3 +1,4 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { UsersService } from './../../services/users.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
@@ -20,7 +21,9 @@ export class UsersSearchFormComponent implements OnInit {
     language: ''
   };
 
-  constructor(private usersService: UsersService) { }
+  constructor(private usersService: UsersService,
+              private activatedRoute: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.language.valueChanges.merge(this.username.valueChanges)
@@ -28,14 +31,24 @@ export class UsersSearchFormComponent implements OnInit {
     .distinctUntilChanged()
     .subscribe(
       val => {
+        this.router.navigate([], {
+          queryParams: this.searchObj,
+          relativeTo: this.activatedRoute
+        })       
+      }
+    );   
+
+    this.activatedRoute.queryParams.subscribe(
+      (params) => {
+        this.searchObj.username = params['username'] || '';
+        this.searchObj.language = params['language'] || '';
+
         this.usersService.getUsers(this.searchObj).subscribe(
           (users) => this.usersService.shareUsers(users),
           err => console.error(err)
         )
       }
-    );
-    // .switchMap(value => this.usersService.getUsers(this.searchObj).catch(err => Observable.of([])))
-    // .subscribe(results => this.usersService.shareUsers(results));
+    )
   }
 
 }
