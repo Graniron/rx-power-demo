@@ -28,7 +28,6 @@ export class UsersSearchFormComponent implements OnInit {
     .distinctUntilChanged()
     .subscribe(
       val => {
-        console.log(val)
         this.usersService.getUsers(this.searchObj).subscribe(
           (users) => this.usersService.shareUsers(users),
           err => console.error(err)
@@ -36,6 +35,7 @@ export class UsersSearchFormComponent implements OnInit {
       }
     );
     // .switchMap(value => this.usersService.getUsers(this.searchObj).catch(err => Observable.of([])))
+    // .subscribe(results => this.usersService.shareUsers(results));
   }
 
 }

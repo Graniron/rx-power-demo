@@ -1,5 +1,6 @@
 .list-wrapper {       
-    min-width: 200px;    
+    min-width: 200px; 
+    font-size: 14px;   
 }
 
 ul {

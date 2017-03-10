@@ -1,6 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 const API_URL = 'https://api.github.com';
 
@@ -28,6 +29,11 @@ export class UsersService {
 
   shareUsers(users) {
     this.onUsersUpdate$.next(users);
+  }
+
+  getUser(id) {
+    return this.http.get(`${API_URL}/user/${id}`)
+      .map(res => res.json())
   }
 
 }
